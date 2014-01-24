@@ -5,12 +5,14 @@ set(
 	
 	Main.cpp
 	MainWindow.cpp
+	SettingsWindow.cpp
 )
 
 set(
 	Forms
 	
 	MainWindow.ui
+	SettingsWindow.ui
 )
 
 

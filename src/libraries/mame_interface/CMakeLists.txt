@@ -5,12 +5,14 @@ set(
 	Sources
 
 	GameList.cpp
+	Settings.cpp
 )
 
 set(
 	Headers
 
 	GameList.h
+	Settings.h
 )
 
 include(${QT_USE_FILE})

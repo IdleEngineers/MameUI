@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <mame_interface/GameList.h>
+#include <mame_interface/Settings.h>
 
 namespace Ui {
 	class MainWindow;
@@ -24,6 +25,8 @@ class MainWindow : public QMainWindow {
 
 		void on_Btn_LoadGames_clicked();
 
+		void on_actionSettings_triggered();
+
 	signals:
 
 
@@ -31,6 +34,7 @@ class MainWindow : public QMainWindow {
 		Ui::MainWindow *ui;
 
 		GameList gameListManger;
+		Settings settings;
 		QMap<QString, QString> games;
 
 		/**
