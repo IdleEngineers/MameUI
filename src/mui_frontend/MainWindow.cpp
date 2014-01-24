@@ -48,3 +48,19 @@ MainWindow::~MainWindow() {
 
 void MainWindow::SetupCustomSlotsAndSignals() {
 }
+
+void MainWindow::on_Btn_LoadGames_clicked() {
+	ui->GameList->clear();
+	games.clear();
+
+	bool loadedGameList = gameListManger.GetGameListFromFile(ui->GameListFile->text(), games);
+
+	if(!loadedGameList) {
+		return;
+	}
+
+//	QList<QString> newGames = games.values();
+	ui->GameList->addItems(games.keys());
+
+
+}

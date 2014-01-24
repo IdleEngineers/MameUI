@@ -28,5 +28,5 @@ target_link_libraries(
 	"${PACKAGE_NAME}"
 	
 	${QT_LIBRARIES}
-	#libraries later
+	mameInterface
 )
