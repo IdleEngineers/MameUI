@@ -3,6 +3,8 @@
 
 #include <gtest/gtest.h>
 #include <libraries/mame_interface/GameList.h>
+#include <QMap>
+#include <QString>
 
 class GameListTests : public ::testing::Test {
 	protected:
@@ -15,7 +17,9 @@ class GameListTests : public ::testing::Test {
 			delete gl;
 		}
 
+		static void FillTestGamesMap(QMap<QString, QString>& Map);
+
 		GameList* gl;
 };
 
-#endif // GAMELISTTESTS_H
+#endif
