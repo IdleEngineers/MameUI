@@ -30,5 +30,3 @@ target_link_libraries(
 	${QT_LIBRARIES}
 	#libraries later
 )
-
-#qt4_use_modules("${PACKAGE_NAME}" Widgets)

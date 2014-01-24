@@ -28,4 +28,4 @@ enable_testing()
 # Must add subdirectories after installer so that the install directories are defined
 #====================================================================================================
 add_subdirectory("src")
-#add_subdirectory("tests")
+add_subdirectory("tests")
