@@ -4,18 +4,19 @@ set(PACKAGE_NAME mameInterfaceTests)
 set(
 	Sources
 
-#	GameList.cpp
+	GameListTests.cpp
 )
 
 set(
 	Headers
 
-#	GameList.h
+	GameListTests.h
 )
 
-#add_library(
-#	mameInterface
-#	SHARED
-#
-#	${Sources}
-#)
+add_executable(
+	mameInterfaceTests
+
+	${Sources}
+)
+
+target_link_libraries(mameInterfaceTests mameInterface gtest gtest_main)
