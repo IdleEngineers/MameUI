@@ -1,7 +1,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QListWidgetItem>
 #include <QMainWindow>
+#include <QModelIndex>
+#include <QProcess>
+
 #include <mame_interface/GameList.h>
 #include <mame_interface/Settings.h>
 
@@ -22,10 +26,13 @@ class MainWindow : public QMainWindow {
 	private slots:
 		//UI Events
 
-
 		void on_Btn_LoadGames_clicked();
-
 		void on_actionSettings_triggered();
+		void on_GameList_doubleClicked(const QModelIndex &index);
+
+		void GameExited(int ExitCode);
+
+		void on_GameList_activated(const QModelIndex &index);
 
 	signals:
 
@@ -37,11 +44,15 @@ class MainWindow : public QMainWindow {
 		Settings settings;
 		QMap<QString, QString> games;
 
+		QProcess* gameProcess; ///< Reference to the running game process
+
 		/**
 		 * @brief Makes the connections for any custom slots and signals.
 		 *			Called during class construction
 		 */
 		void SetupCustomSlotsAndSignals();
+
+		void LaunchGame(QString FullGameName);
 
 		void LoadSettings();
 		void SaveSettings();
