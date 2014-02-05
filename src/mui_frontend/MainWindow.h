@@ -26,13 +26,16 @@ class MainWindow : public QMainWindow {
 	private slots:
 		//UI Events
 
-		void on_Btn_LoadGames_clicked();
 		void on_actionSettings_triggered();
 		void on_GameList_doubleClicked(const QModelIndex &index);
 
 		void GameExited(int ExitCode);
 
 		void on_GameList_activated(const QModelIndex &index);
+
+		void on_gameFilter_textChanged(const QString &arg1);
+
+		void on_action_Reload_Game_List_triggered();
 
 	signals:
 
@@ -53,6 +56,8 @@ class MainWindow : public QMainWindow {
 		void SetupCustomSlotsAndSignals();
 
 		void LaunchGame(QString FullGameName);
+
+		void ReloadGameList();
 
 		void LoadSettings();
 		void SaveSettings();

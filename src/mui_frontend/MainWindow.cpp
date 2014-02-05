@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget* parent)
 {
 	ui->setupUi(this);
 	SetupCustomSlotsAndSignals();
+	ReloadGameList();
 }
 
 MainWindow::~MainWindow() {
@@ -37,6 +38,8 @@ void MainWindow::LaunchGame(QString FullGameName) {
 		return;
 	}
 
+	QString cmd = settings.GetMamePath() + " -rp " + settings.GetRomsPath() + " " + mameGameName;
+
 	arguments.append("-rp " + settings.GetRomsPath());
 	arguments.append(mameGameName);
 
@@ -44,13 +47,16 @@ void MainWindow::LaunchGame(QString FullGameName) {
 
 	connect(gameProcess, SIGNAL(finished(int)), this, SLOT(GameExited(int)));
 
-	qDebug() << "Starting Process:" << settings.GetMamePath();
-	gameProcess->start(settings.GetMamePath(), arguments);
+	qDebug() << "Command:" << settings.GetMamePath() << " " << arguments.at(0) << " " << arguments.at(1);
 
+	gameProcess->start(settings.GetMamePath(), arguments);
+//	gameProcess->start(cmd.toStdString().c_str());
+	//		system(cmd.toStdString().c_str());
 }
 
-void MainWindow::on_Btn_LoadGames_clicked() {
+void MainWindow::ReloadGameList() {
 	ui->GameList->clear();
+	ui->gameFilter->clear();
 	games.clear();
 
 	bool loadedGameList = gameListManger.GetGameListFromFile(settings.GetGameListPath(), games);
@@ -61,6 +67,7 @@ void MainWindow::on_Btn_LoadGames_clicked() {
 
 	ui->GameList->addItems(games.keys());
 }
+
 
 void MainWindow::on_actionSettings_triggered() {
 	SettingsWindow settingsDialog(&settings);
@@ -79,4 +86,24 @@ void MainWindow::GameExited(int ExitCode) {
 
 void MainWindow::on_GameList_activated(const QModelIndex &index) {
 	LaunchGame(index.data().toString());
+}
+
+void MainWindow::on_gameFilter_textChanged(const QString &arg1) {
+	ui->GameList->clear();
+
+	QList<QString> gameKeys = games.keys();
+
+	if(ui->gameFilter->text().isEmpty()) {
+		ui->GameList->addItems(gameKeys);
+	} else {
+		for(int i(0); i < gameKeys.count(); ++i) {
+			if(gameKeys[i].contains(ui->gameFilter->text(), Qt::CaseInsensitive)) {
+				ui->GameList->addItem(gameKeys[i]);
+			}
+		}
+	}
+}
+
+void MainWindow::on_action_Reload_Game_List_triggered() {
+	ReloadGameList();
 }
