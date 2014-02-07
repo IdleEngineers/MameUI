@@ -2,7 +2,7 @@ MameUI
 ======
 
 A simple frontend to MAME (Qt 5 based)
-
+![First MameUI](https://github.com/IdleEngineers/MameUI/blob/master/docs/first_screenshot.jpg?raw=true)
 #How To Run
 There are a few settings to fill in when setting up MameUI locally:
 * Provide the path to a text file containing the game list
