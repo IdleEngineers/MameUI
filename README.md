@@ -19,7 +19,7 @@ There are a few settings to fill in when setting up MameUI locally:
   *`cd mameui_build`
 4. Run CMake: 
   * `cmake -G "Unix Makefiles" ../MameUI/`
-  * Note: You will need to know more about ![CMake](http://cmake.org) if you want to use something other than Make files to build.
+  * Note: You will need to know more about [CMake](http://cmake.org) if you want to use something other than Make files to build.
 5. Build the project: 
   * `make`
 6. Run MameUI: 
